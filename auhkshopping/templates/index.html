@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<div class = "jumbotron jumbotron-fluid card card-image" style = "background-image: url({{url_for('static', filename = 'img/header.jpg')}});">
+    <div class = "text-white text-center py-5 px-4">
+        <div>
+            <h1 class = "displat-2" style = "font: bold;">Welcome to AUHK Shopping!</h1>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block main %}
+
+<section>
+    <div class = "text-dark text center">
+        <p class = "h3 text-dark mb-4" id = "brands_anchor">Select a brand to see what products we have！</p>
+    </div>
+    <div class = "card-deck">
+        {% for brand in brands %}
+        <div class = "card">
+            <img class = "card-img-top" src = "{{url_for('static', filename = 'img/'+brand.image)}}" alt = "Card image">
+            <div class = "card-body">
+                <h4 class = "card-title">{{brand.name}}</h4>
+                <p class = "card-text">{{brand.description}}</p>
+            </div>
+            <div class = "card-footer"><a href = "{{url_for('main.brandproducts', brandid = brand.id)}}" class = "btn btn-primary">Products</a></div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
